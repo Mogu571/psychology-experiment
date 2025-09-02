@@ -52,22 +52,47 @@ const practice_stimuli = [
 
 // 练习试次程序
 const practice_procedure = {
-    timeline: [{
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: jsPsych.timelineVariable('stimulus'),
-        choices: ['f', 'j'],
-        trial_duration: 2000,
-        response_ends_trial: true,
-        data: {
-            task: 'practice',
-            correct_response: jsPsych.timelineVariable('correct_response'),
-            valence: jsPsych.timelineVariable('valence')
+    timeline: [
+        // 注视点
+        {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: '<div style="font-size: 60px;">+</div>',
+            choices: "NO_KEYS",
+            trial_duration: 500,
+            data: {
+                task: 'fixation',
+                phase: 'practice'
+            }
         },
-        on_finish: function(data){
-            data.correct = data.response == data.correct_response;
-            data.rt = data.rt;
+        // 刺激呈现
+        {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: jsPsych.timelineVariable('stimulus'),
+            choices: ['f', 'j'],
+            trial_duration: 2000,
+            response_ends_trial: true,
+            data: {
+                task: 'practice',
+                correct_response: jsPsych.timelineVariable('correct_response'),
+                valence: jsPsych.timelineVariable('valence')
+            },
+            on_finish: function(data){
+                data.correct = data.response == data.correct_response;
+                data.rt = data.rt;
+            }
+        },
+        // 试次间间隔
+        {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: '',
+            choices: "NO_KEYS",
+            trial_duration: 800,
+            data: {
+                task: 'inter_trial_interval',
+                phase: 'practice'
+            }
         }
-    }],
+    ],
     timeline_variables: practice_stimuli,
     randomize_order: true
 };
@@ -96,22 +121,47 @@ const test_stimuli = [
 
 // 正式实验程序
 const test_procedure = {
-    timeline: [{
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: jsPsych.timelineVariable('stimulus'),
-        choices: ['f', 'j'],
-        trial_duration: 3000,
-        response_ends_trial: true,
-        data: {
-            task: 'test',
-            correct_response: jsPsych.timelineVariable('correct_response'),
-            valence: jsPsych.timelineVariable('valence')
+    timeline: [
+        // 注视点
+        {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: '<div style="font-size: 60px;">+</div>',
+            choices: "NO_KEYS",
+            trial_duration: 500,
+            data: {
+                task: 'fixation',
+                phase: 'test'
+            }
         },
-        on_finish: function(data){
-            data.correct = data.response == data.correct_response;
-            data.rt = data.rt;
+        // 刺激呈现
+        {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: jsPsych.timelineVariable('stimulus'),
+            choices: ['f', 'j'],
+            trial_duration: 3000,
+            response_ends_trial: true,
+            data: {
+                task: 'test',
+                correct_response: jsPsych.timelineVariable('correct_response'),
+                valence: jsPsych.timelineVariable('valence')
+            },
+            on_finish: function(data){
+                data.correct = data.response == data.correct_response;
+                data.rt = data.rt;
+            }
+        },
+        // 试次间间隔
+        {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: '',
+            choices: "NO_KEYS",
+            trial_duration: 1000,
+            data: {
+                task: 'inter_trial_interval',
+                phase: 'test'
+            }
         }
-    }],
+    ],
     timeline_variables: test_stimuli,
     randomize_order: true
 };
