@@ -1,0 +1,323 @@
+/* 心理学实验 - 样式文件 */
+
+/* 基础样式 */
+body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+/* 下载页面容器样式 */
+.download-container {
+    text-align: center;
+    padding: 50px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+}
+
+.download-container h2 {
+    color: #28a745;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.download-container h3 {
+    color: #495057;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.download-container p {
+    color: #6c757d;
+    font-size: 16px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* 下载按钮样式 */
+.download-btn {
+    background-color: #007cba;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 124, 186, 0.2);
+    min-width: 200px;
+}
+
+.download-btn:hover {
+    background-color: #005a87;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 124, 186, 0.3);
+}
+
+.download-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 124, 186, 0.2);
+}
+
+/* 数据预览区域 */
+#data-preview {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+    max-height: 300px;
+    overflow: auto;
+    border: 1px solid #dee2e6;
+    margin-top: 20px;
+}
+
+#preview-content {
+    font-family: 'Courier New', Monaco, 'Lucida Console', monospace;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #495057;
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* jsPsych 实验界面优化 */
+.jspsych-display-element {
+    font-size: 18px;
+}
+
+/* 指导语页面样式 */
+.jspsych-instructions {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.jspsych-instructions h1,
+.jspsych-instructions h2 {
+    color: #007cba;
+    text-align: center;
+}
+
+.jspsych-instructions h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.jspsych-instructions h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.jspsych-instructions p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* 按钮样式统一 */
+.jspsych-btn {
+    background-color: #007cba;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 8px;
+}
+
+.jspsych-btn:hover {
+    background-color: #005a87;
+}
+
+.jspsych-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* 问卷样式 */
+.jspsych-survey-text-question {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.jspsych-survey-text-question p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #495057;
+}
+
+.jspsych-survey-text-question input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.jspsych-survey-text-question input[type="text"]:focus {
+    outline: none;
+    border-color: #007cba;
+    box-shadow: 0 0 0 0.2rem rgba(0, 124, 186, 0.25);
+}
+
+/* 刺激呈现样式 */
+.jspsych-content {
+    max-width: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .download-container {
+        padding: 30px 20px;
+        margin: 10px;
+        border-radius: 10px;
+    }
+    
+    .download-btn {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 10px auto;
+    }
+    
+    .jspsych-instructions h1 {
+        font-size: 24px;
+    }
+    
+    .jspsych-instructions h2 {
+        font-size: 20px;
+    }
+    
+    .jspsych-instructions p {
+        font-size: 16px;
+    }
+    
+    #data-preview {
+        max-height: 200px;
+        padding: 15px;
+    }
+    
+    #preview-content {
+        font-size: 11px;
+    }
+}
+
+/* 深色模式支持（可选） */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #e9ecef;
+    }
+    
+    .download-container {
+        background-color: #2d3748;
+        border-color: #4a5568;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .download-container h2 {
+        color: #68d391;
+    }
+    
+    .download-container h3 {
+        color: #e2e8f0;
+    }
+    
+    .download-container p {
+        color: #cbd5e0;
+    }
+    
+    .download-btn {
+        background-color: #3182ce;
+        box-shadow: 0 2px 10px rgba(49, 130, 206, 0.3);
+    }
+    
+    .download-btn:hover {
+        background-color: #2c5282;
+        box-shadow: 0 4px 15px rgba(49, 130, 206, 0.4);
+    }
+    
+    #data-preview {
+        background-color: #1a202c;
+        border-color: #4a5568;
+    }
+    
+    #preview-content {
+        color: #e2e8f0;
+    }
+    
+    .jspsych-instructions h1,
+    .jspsych-instructions h2 {
+        color: #63b3ed;
+    }
+    
+    .jspsych-survey-text-question input[type="text"] {
+        background-color: #2d3748;
+        border-color: #4a5568;
+        color: #e2e8f0;
+    }
+    
+    .jspsych-survey-text-question input[type="text"]:focus {
+        border-color: #3182ce;
+        box-shadow: 0 0 0 0.2rem rgba(49, 130, 206, 0.25);
+    }
+}
+
+/* 打印样式（如需要） */
+@media print {
+    .download-container {
+        box-shadow: none;
+        border: 2px solid #333;
+    }
+    
+    .download-btn {
+        display: none;
+    }
+    
+    #data-preview {
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+/* 可访问性增强 */
+.download-btn:focus {
+    outline: 2px solid #007cba;
+    outline-offset: 2px;
+}
+
+.jspsych-btn:focus {
+    outline: 2px solid #007cba;
+    outline-offset: 2px;
+}
+
+/* 加载动画（可选扩展） */
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007cba;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
