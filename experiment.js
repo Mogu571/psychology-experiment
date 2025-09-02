@@ -36,7 +36,8 @@ const demographics = {
 const practice_instructions = {
     type: jsPsychInstructions,
     pages: [
-        '<h2>练习阶段</h2><p>现在开始练习。</p><p>您将看到一些词语，如果看到"积极"词汇请按<strong>J</strong>键，如果看到"消极"词汇请按<strong>F</strong>键。</p><p>请尽快且准确地做出反应。</p>'
+        '<h2>练习阶段</h2><p>现在开始练习。</p><p>您将看到一些词语，如果看到"积极"词汇请按<strong>J</strong>键，如果看到"消极"词汇请按<strong>F</strong>键。</p><p>请尽快且准确地做出反应。</p>',
+        '<h3>注意事项</h3><p>每个词语出现前会有一个"+"号，请注视这个符号。</p><p>看到词语后，请尽快判断并按键：</p><p><strong>积极词汇 → J键</strong></p><p><strong>消极词汇 → F键</strong></p>'
     ],
     show_clickable_nav: true,
     button_label_next: '开始练习'
@@ -50,13 +51,13 @@ const practice_stimuli = [
     {stimulus: '<div style="font-size: 48px;">痛苦</div>', correct_response: 'f', valence: 'negative'}
 ];
 
-// 练习试次程序
+// 练习试次程序 - 修正版本，确保有注视点
 const practice_procedure = {
     timeline: [
-        // 注视点
+        // 1. 注视点 - 每个试次开始前显示
         {
             type: jsPsychHtmlKeyboardResponse,
-            stimulus: '<div style="font-size: 60px;">+</div>',
+            stimulus: '<div style="font-size: 60px; font-weight: bold;">+</div>',
             choices: "NO_KEYS",
             trial_duration: 500,
             data: {
@@ -64,7 +65,7 @@ const practice_procedure = {
                 phase: 'practice'
             }
         },
-        // 刺激呈现
+        // 2. 刺激呈现 - 显示词汇并等待反应
         {
             type: jsPsychHtmlKeyboardResponse,
             stimulus: jsPsych.timelineVariable('stimulus'),
@@ -81,10 +82,10 @@ const practice_procedure = {
                 data.rt = data.rt;
             }
         },
-        // 试次间间隔
+        // 3. 试次间间隔 - 空白屏幕
         {
             type: jsPsychHtmlKeyboardResponse,
-            stimulus: '',
+            stimulus: '<div style="height: 50px;"></div>',
             choices: "NO_KEYS",
             trial_duration: 800,
             data: {
@@ -101,7 +102,8 @@ const practice_procedure = {
 const test_instructions = {
     type: jsPsychInstructions,
     pages: [
-        '<h2>正式实验</h2><p>练习结束，现在开始正式实验。</p><p>规则相同：积极词汇按<strong>J</strong>键，消极词汇按<strong>F</strong>键。</p><p>请保持专注并尽快做出反应。</p>'
+        '<h2>正式实验</h2><p>练习结束，现在开始正式实验。</p><p>规则相同：积极词汇按<strong>J</strong>键，消极词汇按<strong>F</strong>键。</p><p>请保持专注并尽快做出反应。</p>',
+        '<p>正式实验中同样会有"+"号注视点。</p><p>请在看到注视点时做好准备，词语出现后立即做出判断。</p><p>准备好了就开始吧！</p>'
     ],
     show_clickable_nav: true,
     button_label_next: '开始正式实验'
@@ -119,13 +121,13 @@ const test_stimuli = [
     {stimulus: '<div style="font-size: 48px;">沮丧</div>', correct_response: 'f', valence: 'negative'}
 ];
 
-// 正式实验程序
+// 正式实验程序 - 修正版本，确保有注视点
 const test_procedure = {
     timeline: [
-        // 注视点
+        // 1. 注视点
         {
             type: jsPsychHtmlKeyboardResponse,
-            stimulus: '<div style="font-size: 60px;">+</div>',
+            stimulus: '<div style="font-size: 60px; font-weight: bold;">+</div>',
             choices: "NO_KEYS",
             trial_duration: 500,
             data: {
@@ -133,7 +135,7 @@ const test_procedure = {
                 phase: 'test'
             }
         },
-        // 刺激呈现
+        // 2. 刺激呈现
         {
             type: jsPsychHtmlKeyboardResponse,
             stimulus: jsPsych.timelineVariable('stimulus'),
@@ -150,10 +152,10 @@ const test_procedure = {
                 data.rt = data.rt;
             }
         },
-        // 试次间间隔
+        // 3. 试次间间隔
         {
             type: jsPsychHtmlKeyboardResponse,
-            stimulus: '',
+            stimulus: '<div style="height: 50px;"></div>',
             choices: "NO_KEYS",
             trial_duration: 1000,
             data: {
@@ -252,4 +254,7 @@ function downloadFile(content, filename, contentType) {
 }
 
 // 启动实验
+console.log('开始加载实验...');
+console.log('Timeline长度:', timeline.length);
+console.log('练习程序timeline长度:', practice_procedure.timeline.length);
 jsPsych.run(timeline);
